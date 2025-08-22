@@ -10,7 +10,7 @@ import { SelectFilter } from "./select-filter"
 import GoalsDialogForm from "./new-goal-form"
 import { useMemo, useState } from "react"
 import { useMetaSlice } from "@/hooks/goals-pagination"
-import EditMetaDialog from "./edit-modal-goal"
+import { EditMetaDialog } from "./edit-modal-goal"
 import { DeleteMetaDialog } from "./confirm-delete-dialog"
 import { useDeleteMeta } from "@/hooks/delete-goal"
 import { MetaDto } from "@/api/get-goals"
@@ -101,14 +101,14 @@ export function Goals() {
   }
 
   function askDelete(meta: MetaDto) {
-  setSelected(meta);
-  setOpen(true);
+    setSelected(meta);
+    setOpen(true);
   }
 
-  // function solicitarEdicao(meta: Meta) {
-  //   setMetaEmEdicao(meta)
-  //   setEditOpen(true)
-  // }
+  function askEdit(meta: Meta) {
+    setMetaEmEdicao(meta)
+    setEditOpen(true)
+  }
 
   // function salvarNovaMeta(novoValor: number) {
   //   if (!metaEmEdicao) return
@@ -177,7 +177,7 @@ export function Goals() {
               </TableCell>
               <TableCell>
                 <div className="flex justify-end gap-2">
-                  <Button variant="outline" size="sm" onClick={() => console.log('')}>
+                  <Button variant="outline" size="sm" onClick={() => askEdit(meta)}>
                     <Pencil className="h-4 w-4" />
                   </Button>
 
@@ -214,9 +214,13 @@ export function Goals() {
       />
       <EditMetaDialog
         open={editOpen}
-        onOpenChange={setEditOpen}
+        onOpenChange={(o) => { setEditOpen(o); if (!o) setMetaEmEdicao(null); }}
         registro={metaEmEdicao}
-        onSave={() => console.log('salvarNovaMeta')}
+        onSuccess={() => {
+          toast.success("Meta alterada com sucesso")
+          setEditOpen(false)
+          setMetaEmEdicao(null)
+        }}
       />
     </div>
   )

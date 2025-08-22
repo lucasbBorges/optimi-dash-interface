@@ -1,16 +1,14 @@
-// src/components/meta/EditMetaDialog.tsx
-import { useEffect } from "react";
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import React, { useEffect, useState } from "react"
+import { AlertDialogHeader } from "@/components/ui/alert-dialog"
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
 import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { MetaAlterInput } from "@/api/put-goal";
-import { useUpdateMetaValor } from "@/hooks/alter-goal";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter,
-} from "@/components/ui/dialog";
-import { MetaDto } from "@/api/get-goals";
+import { MetaDto } from "@/api/get-goals"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useUpdateMetaValor } from "@/hooks/alter-goal"
 
 function brlToNumber(v: unknown): number {
   if (typeof v === "number") return v;
@@ -25,11 +23,12 @@ export const metaValorSchema = z.object({
 
 export type MetaValorForm = z.infer<typeof metaValorSchema>;
 
+
 export function EditMetaDialog({
   open,
   onOpenChange,
-  registro,            // meta selecionada
-  onSuccess,           // fechar modal + toasts no pai
+  registro,         
+  onSuccess,          
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -40,7 +39,6 @@ export function EditMetaDialog({
     resolver: zodResolver(metaValorSchema),
     defaultValues: { meta: undefined as any },
   });
-
   useEffect(() => {
     if (registro) {
       const brl = (registro.meta ?? 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 });
@@ -106,5 +104,5 @@ export function EditMetaDialog({
         </form>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
