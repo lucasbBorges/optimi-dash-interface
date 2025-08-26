@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import React, { useEffect, useState } from "react"
-import { AlertDialogHeader } from "@/components/ui/alert-dialog"
-import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { z } from "zod";
 import { MetaDto } from "@/api/get-goals"

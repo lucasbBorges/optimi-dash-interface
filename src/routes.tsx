@@ -9,6 +9,7 @@ import { PageNotFound } from "./pages/404";
 import { Seamaty } from "./pages/app/seamaty/seamaty";
 import { Search } from "./pages/app/search/search";
 import { Goals } from "./pages/app/goals/goals";
+import { DashboardCurrentYear } from "./pages/app/current-year/dashboard-cu";
 
 export const router = createBrowserRouter([
     {
@@ -16,7 +17,8 @@ export const router = createBrowserRouter([
         errorElement: <PageNotFound />,
         element: <AppLayout />,
         children: [
-            { path: '/', element: <Dashboard /> },
+            { path: '/', element: <DashboardCurrentYear /> },
+            { path: 'current-month', element: <Dashboard />},
             { path: 'hills', element: <Hills />},
             { path: 'avert', element: <Avert />},
             { path: 'seamaty', element: <Seamaty />},

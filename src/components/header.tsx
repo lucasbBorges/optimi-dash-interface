@@ -1,5 +1,5 @@
 import { Separator } from "@radix-ui/react-separator";
-import { Bot, HeartPulse, Home, PawPrint, Rocket, UserSearch, UtensilsCrossed } from "lucide-react";
+import { Bot, ChartNoAxesCombined, HeartPulse, Home, PawPrint, Rocket, UserSearch, UtensilsCrossed } from "lucide-react";
 import { NavLink } from "./nav-link";
 import { ThemeToggle } from "./theme/theme-toggle";
 
@@ -14,6 +14,10 @@ export function Header () {
                     <NavLink to='/'>
                         <Home className="h-4 w-4"/>
                         Início
+                    </NavLink>
+                    <NavLink to='/current-month'>
+                        <ChartNoAxesCombined className="h-4 w-4"/>
+                        Mês corrente
                     </NavLink>
                     <NavLink to='/hills'>
                         <UtensilsCrossed className="h-4 w-4"/>
