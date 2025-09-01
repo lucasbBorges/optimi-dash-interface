@@ -63,8 +63,8 @@ export function ToRevenueCard() {
                                 {monthReceiptTo == undefined ? "" : 
                                 monthReceiptTo?.metaFaturamentoComparativoDTO.faturamentoAnoAtual > 
                                 monthReceiptTo?.metaFaturamentoComparativoDTO.faturamentoAnoAnterior ? 
-                                <ArrowBigUp className="text-muted-foreground text-green-800"/> : 
-                                <ArrowBigDown className="text-muted-foreground text-red-800"/>}
+                                <ArrowBigUp className=" text-green-800"/> : 
+                                <ArrowBigDown className=" text-red-800"/>}
                             </div>
                         </div>
                     </>

@@ -79,8 +79,8 @@ export function TotalRevenueCard() {
                         </div>
                         <div>
                             {faturamentoAnoAtual > faturamentoAnoAnterior ? 
-                            <ArrowBigUp className="text-muted-foreground text-green-800"/> : 
-                            <ArrowBigDown className="text-muted-foreground text-red-800"/>}
+                            <ArrowBigUp className=" text-green-800"/> : 
+                            <ArrowBigDown className=" text-red-800"/>}
                         </div>
                     </div>
                 </>
