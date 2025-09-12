@@ -1,4 +1,4 @@
-import { getTopFornecs } from "@/api/get-total-top-fornecs";
+import { getTopFornecsYear } from "@/api/get-total-top-fornecs-year";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
@@ -16,7 +16,7 @@ const COLORS = [
 export function PopularFornecsChart () {
     const { data } = useQuery({
     queryKey: ['total', 'top-fornecs'],
-    queryFn: getTopFornecs,
+    queryFn: getTopFornecsYear,
   })
 
     return (
@@ -27,7 +27,7 @@ export function PopularFornecsChart () {
                         Fornecedores populares
                     </CardTitle>
                     <CardDescription>
-                        Top fornecedores do período
+                        Top fornecedores dos últimos 365 dias
                     </CardDescription>
                 </div>
             </CardHeader>

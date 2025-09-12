@@ -5,9 +5,9 @@ export interface GetTopFornecs {
   faturamento: number
 }
 
-export async function getTopFornecs() {
+export async function getTopFornecsMonth() {
   const response = await api.get<GetTopFornecs[]>(
-    '/total/top-fornec',
+    '/total/top-fornec-mensal',
   )
 
   return response.data
