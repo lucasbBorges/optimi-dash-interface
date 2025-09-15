@@ -1,20 +1,37 @@
-import { getTotalHistoryReceipt } from "@/api/get-total-history-receipt";
+import { getTotalReceiptCompare } from "@/api/get-total-receipt-compare";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { ResponsiveContainer,  
          LineChart,
          XAxis,
          YAxis,
-         Line
+         Line,
+         CartesianGrid
 } from 'recharts'
+import { yearReceiptCompareResolve } from "./utils";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { sky, violet } from "tailwindcss/colors";
 
-import { violet } from 'tailwindcss/colors'
+
 
 export function RevenueChart() {
     const { data: monthReceipt, isFetching: isLoadingMonthReceipt } = useQuery({
-    queryKey: ['total', 'history-receipt'],
-    queryFn: getTotalHistoryReceipt,
+    queryKey: ['total', 'history-receipt-compare-year'],
+    queryFn: getTotalReceiptCompare,
   })
+
+    const monthReceiptResolved = yearReceiptCompareResolve(monthReceipt)
+
+    const chartConfig = {
+        faturamentoAnoRecente: {
+            label: "Faturado Ano Recente",
+            color: violet[500],
+        },
+        faturamentoAnoAnterior: {
+            label: "Faturado Ano Anterior",
+            color: sky[500],
+        },
+    } 
 
     return (
         <Card className="col-span-6">
@@ -26,14 +43,50 @@ export function RevenueChart() {
             </CardHeader>
             <CardContent>
                 <ResponsiveContainer width="100%" height={240}>
-                    <LineChart data={monthReceipt} style={{fontsize: 12}}>
-                        <XAxis dataKey='date' tickLine={false} axisLine={false} dy={16} fontSize={10}/>
-                        
-                        <YAxis stroke="#888" axisLine={false} tickLine={false} fontSize={10}
-                        tickFormatter={(value: number) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL'})}/>
-                        
-                        <Line type="linear" strokeWidth={2} dataKey="faturamento" stroke={violet[500]}/>
-                    </LineChart>
+                    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+                        <LineChart
+                            accessibilityLayer
+                            data={monthReceiptResolved}
+                            margin={{
+                            left: 12,
+                            right: 12,
+                            }}
+                        >
+                            <CartesianGrid stroke="none" />
+                            <XAxis
+                            dataKey="mes"
+                            tickLine={false}
+                            axisLine={false}
+                            tickMargin={8}
+                            tickFormatter={(value) => value.slice(0, 3)}
+                            style={{ fontSize: 10, fontWeight: "bold"}}
+                            />
+                            <ChartTooltip
+                            content={
+                                <ChartTooltipContent
+                                className="w-[150px]"
+                                nameKey="views"
+                                />
+                            }
+                            />
+                            <Line
+                            dataKey="faturamentoAnoRecente"
+                            name={chartConfig.faturamentoAnoRecente.label}
+                            type="monotone"
+                            stroke={violet[500]}
+                            strokeWidth={2}
+                            dot={false}
+                            />
+                            <Line
+                            dataKey="faturamentoAnoAnterior"
+                            name={chartConfig.faturamentoAnoAnterior.label}
+                            type="monotone"
+                            stroke={sky[500]}
+                            strokeWidth={2}
+                            dot={false}
+                            />
+                        </LineChart>
+                    </ChartContainer>
                 </ResponsiveContainer>
             </CardContent>
         </Card>

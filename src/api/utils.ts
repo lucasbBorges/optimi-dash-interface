@@ -19,3 +19,13 @@ export type BadAreas = {
   praca: string,
   percentMetaAtingida: number;
 }
+
+export interface MonthReceipt {
+  date: string,
+  faturamento: number
+}
+
+export interface GetYearReceiptCompare {
+  faturamentoRecente: MonthReceipt[],
+  faturamentoPassado: MonthReceipt[]
+}
