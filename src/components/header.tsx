@@ -1,5 +1,5 @@
 import { Separator } from "@radix-ui/react-separator";
-import { Bot, ChartNoAxesCombined, HeartPulse, Home, PawPrint, Rocket, UserSearch, UtensilsCrossed } from "lucide-react";
+import { ChartLine, ChartNoAxesCombined, HeartPulse, Home, PawPrint, Rocket, UserSearch, UtensilsCrossed } from "lucide-react";
 import { NavLink } from "./nav-link";
 import { ThemeToggle } from "./theme/theme-toggle";
 
@@ -27,13 +27,13 @@ export function Header () {
                         <HeartPulse className="h-4 w-4"/>
                         Avert
                     </NavLink>
-                    <NavLink to='/seamaty'>
-                        <Bot className="h-4 w-4" />
-                        Seamaty
+                    <NavLink to='/global-analysis'>
+                        <ChartLine className="h-4 w-4" />
+                        Análise Geral
                     </NavLink>
                     <NavLink to='/search'>
                         <UserSearch className="h-4 w-4"/>
-                        Análise
+                        Análise Individual
                     </NavLink>
                     <NavLink to='/goals'>
                         <Rocket className="h-4 w-4" />

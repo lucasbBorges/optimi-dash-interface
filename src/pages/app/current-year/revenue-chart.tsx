@@ -15,7 +15,7 @@ import { sky, violet } from "tailwindcss/colors";
 
 
 export function RevenueChart() {
-    const { data: monthReceipt, isFetching: isLoadingMonthReceipt } = useQuery({
+    const { data: monthReceipt } = useQuery({
     queryKey: ['total', 'history-receipt-compare-year'],
     queryFn: getTotalReceiptCompare,
   })

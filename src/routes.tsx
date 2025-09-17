@@ -6,7 +6,7 @@ import { AuthLayout } from "./pages/_layouts/auth";
 import { Hills } from "./pages/app/hills/hills";
 import { Avert } from "./pages/app/avert/avert";
 import { PageNotFound } from "./pages/404";
-import { Seamaty } from "./pages/app/seamaty/seamaty";
+import { GlobalAnalysis } from "./pages/app/global analysis/global-analysis";
 import { Search } from "./pages/app/search/search";
 import { Goals } from "./pages/app/goals/goals";
 import { DashboardCurrentYear } from "./pages/app/current-year/dashboard-cu";
@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
             { path: 'current-month', element: <Dashboard />},
             { path: 'hills', element: <Hills />},
             { path: 'avert', element: <Avert />},
-            { path: 'seamaty', element: <Seamaty />},
+            { path: 'global-analysis', element: <GlobalAnalysis />},
             { path: 'search', element: <Search />},
             { path: 'goals', element: <Goals />}
         ]
